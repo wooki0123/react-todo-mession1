@@ -11,12 +11,10 @@ function App() {
 
     const lastId = useRef(4)
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        const form = e.target.todo.value
-        setTodos([{ id: lastId.current, text: form, checked: false }, ...todos])
+    const addTodo = (text) => {
+        const todo = { id: lastId.current, text, checked: false }
+        setTodos([todo, ...todos])
         lastId.current++
-        e.target.todo.value = ''
     }
 
     const handleChecked = (id) => {
@@ -25,8 +23,8 @@ function App() {
 
     return (
         <>
-            <TodoWriteForm handleSubmit={handleSubmit} />
-            <TodoList todos={todos} setTodos={setTodos} handleChecked={handleChecked} />
+            <TodoWriteForm addTodo={addTodo} />
+            <TodoList todos={todos} setTodos={setTodos} addTodo={addTodo} handleChecked={handleChecked} />
         </>
     )
 }
