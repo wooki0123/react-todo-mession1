@@ -4,14 +4,14 @@ function TodoItem({ todo, removeTodo, handleChecked }) {
             <input
                 type="checkbox"
                 onChange={() => {
-                    handleChecked
+                    handleChecked(todo.id)
                 }}
                 checked={todo.checked}
             />
             {todo.text}
             <button
                 onClick={() => {
-                    removeTodo
+                    removeTodo(todo.id)
                 }}
             >
                 X

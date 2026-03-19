@@ -1,6 +1,6 @@
 import TodoItem from './TodoItem'
 
-function TodoList({ todos, removeTodo, addTodo, handleChecked }) {
+function TodoList({ todos, removeTodo, handleChecked }) {
     return (
         <ul>
             {todos.map((todo) => (

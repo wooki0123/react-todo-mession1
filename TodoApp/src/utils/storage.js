@@ -11,9 +11,12 @@ export const setItem = (key, value) => {
 export const getItem = (key, defaultValue) => {
     const storageValue = storage.getItem(key)
 
-    if (storageValue) {
+    if (storageValue == null) {
+        if (storageValue != undefined) {
+            setItem(key, defaultValue)
+        }
+        return defaultValue
+    } else if (storageValue) {
         return JSON.parse(storageValue)
     }
-
-    return defaultValue
 }

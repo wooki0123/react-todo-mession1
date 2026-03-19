@@ -3,6 +3,7 @@ export default function TodoWriteForm({ addTodo }) {
         e.preventDefault()
         const form = e.target.todo
         addTodo(form.value)
+        form.value = ''
     }
 
     return (

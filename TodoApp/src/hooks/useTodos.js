@@ -18,7 +18,6 @@ function useTodos() {
 
     const addTodo = (text) => {
         const todo = { id: lastId.current, text, checked: false }
-        setItem('todos', JSON.stringify(todo))
         lastId.current++
 
         setTodos([todo, ...todos])
