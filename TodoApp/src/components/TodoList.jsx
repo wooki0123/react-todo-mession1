@@ -1,15 +1,13 @@
-export default function TodoList({ todos, setTodos, handleChecked }) {
+import TodoItem from './TodoItem'
+
+function TodoList({ todos, removeTodo, addTodo, handleChecked }) {
     return (
         <ul>
-            {todos.map((todo, index) => {
-                return (
-                    <li key={todo.id}>
-                        <input type="checkbox" checked={todo.checked} onChange={(e) => handleChecked(todo.id)} />
-                        {todo.text}
-                        <button onClick={() => setTodos(todos.filter((_, i) => i !== index))}>X</button>
-                    </li>
-                )
-            })}
+            {todos.map((todo) => (
+                <TodoItem key={todo.id} todo={todo} removeTodo={removeTodo} handleChecked={handleChecked} />
+            ))}
         </ul>
     )
 }
+
+export default TodoList
