@@ -5,8 +5,6 @@ export default function TodoList({ todos, setTodos, handleChecked }) {
                 return (
                     <li key={todo.id}>
                         <input type="checkbox" checked={todo.checked} onChange={(e) => handleChecked(todo.id)} />
-                        {todo.checked ? 'true' : 'false'}
-                        {todo.id}
                         {todo.text}
                         <button onClick={() => setTodos(todos.filter((_, i) => i !== index))}>X</button>
                     </li>

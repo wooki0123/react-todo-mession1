@@ -22,10 +22,12 @@ function App() {
     }
 
     return (
-        <>
-            <TodoWriteForm addTodo={addTodo} />
-            <TodoList todos={todos} setTodos={setTodos} addTodo={addTodo} handleChecked={handleChecked} />
-        </>
+        <div className="flex items-center justify-center h-screen">
+            <div className="bg-white border w-1/2 h-2/5 p-1">
+                <TodoWriteForm addTodo={addTodo} />
+                <TodoList todos={todos} setTodos={setTodos} addTodo={addTodo} handleChecked={handleChecked} />
+            </div>
+        </div>
     )
 }
 
