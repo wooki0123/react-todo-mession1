@@ -2,15 +2,19 @@ import { useEffect, useRef, useState } from 'react'
 import { getItem, setItem } from '../utils/storage'
 
 function useTodos() {
-    const [todos, setTodos] = useState(
-        getItem('todos', [
-            { id: 3, text: '할일', checked: false },
-            { id: 2, text: '할일', checked: false },
-            { id: 1, text: '할일', checked: false },
-        ]),
-    )
+    const [todos, setTodos] = useState(() => {
+        const saved = getItem('todos')
+        if (!saved || saved.length === 0) {
+            return [
+                { id: 3, text: '할일3', checked: false },
+                { id: 2, text: '할일2', checked: false },
+                { id: 1, text: '할일1', checked: false },
+            ]
+        }
+        return saved
+    })
 
-    const lastId = useRef(4)
+    const lastId = useRef(todos.length > 0 ? Math.max(...todos.map((t) => t.id)) + 1 : 1)
 
     useEffect(() => {
         setItem('todos', todos)
@@ -19,7 +23,6 @@ function useTodos() {
     const addTodo = (text) => {
         const todo = { id: lastId.current, text, checked: false }
         lastId.current++
-
         setTodos([todo, ...todos])
     }
 
